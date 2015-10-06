@@ -1,12 +1,12 @@
-$(function(){
+(function(){
 	var canvas 	= new Canvas(document.getElementsByTagName('canvas')[0]),
-		light 	= new Light(canvas.getCenter(), 4, 350, '#ddd'),
-		objects	= generateObjects(canvas.el.offsetWidth, canvas.el.offsetHeight),
-		context = {
-			canvas: canvas,
-			light: light,
-			objects: objects
-		};
+			light 		= new Light(canvas.getCenter(), 4, 350, '#ddd'),
+			objects		= generateObjects(canvas.el.offsetWidth, canvas.el.offsetHeight),
+			context 	= {
+				canvas: canvas,
+				light: light,
+				objects: objects
+			};
 
 	light.intensity = 600;
 	canvas.init();
@@ -19,7 +19,7 @@ $(function(){
 					x: Math.round(Math.random()*canvasWidth),
 					y: Math.round(Math.random()*canvasHeight)
 				},
-				size = Math.round(Math.random()*40)+20
+				size = Math.round(Math.random()*40)+20;
 
 			objects.push(
 				new Geometry([
@@ -28,7 +28,7 @@ $(function(){
 					new Point(start.x+size, start.y+size),
 					new Point(start.x, start.y+size)
 				])
-			)
+			);
 		}
 
 		return objects;
@@ -51,19 +51,19 @@ $(function(){
 		if(e.deltaY > 0) {
 			if(this.light.intensity-10 > 0) this.light.intensity -= 10;
 		}
-		this.light.draw(this.canvas.ctx)
-		this.light.drawShadows(this.canvas.ctx, this.objects)
+		this.light.draw(this.canvas.ctx);
+		this.light.drawShadows(this.canvas.ctx, this.objects);
 	}
 
 	document.getElementsByTagName('canvas')[0].onmousemove = onmousemove.bind(context);
 	document.getElementsByTagName('canvas')[0].onmousewheel = onmousewheel.bind(context);
-	
+
 	if(window.ontouchstart){
 		document.getElementsByTagName('canvas')[0].ontouchstart = onmousemove.bind(context);
 	}
 
 	onmousemove.bind(context)({
-		clientX: (canvas.el.offsetWidth/2)+canvas.el.offsetLeft, 
+		clientX: (canvas.el.offsetWidth/2)+canvas.el.offsetLeft,
 		clientY: (canvas.el.offsetHeight/2)+canvas.el.offsetTop
 	});
-})
+})();
