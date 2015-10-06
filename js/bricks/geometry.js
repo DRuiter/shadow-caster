@@ -13,7 +13,7 @@ Geometry.prototype.draw = function (ctx, options){
 
 	ctx.fillStyle = options.fillStyle || '#ddd';
 	ctx.strokeStyle = options.strokeStyle || '#bbb';
-	
+
 	ctx.beginPath();
 	ctx.moveTo(this.points[0].x, this.points[0].y);
 
@@ -23,24 +23,24 @@ Geometry.prototype.draw = function (ctx, options){
 		ctx.lineTo(p.x, p.y);
 
 		if(i === a.length-1) ctx.lineTo(self.points[0].x, self.points[0].y);
-	})
+	});
 
 	ctx.closePath();
-	
+
 	if(options.fill) 	ctx.fill();
 	if(options.stroke) 	ctx.stroke();
-}
+};
 
 Geometry.prototype.getCenter = function (){
 	var tx = 0, ty = 0;
-	
+
 	this.points.forEach(function (p){
 		tx += p.x;
 		ty += p.y;
-	})
+	});
 
 	return new Point(tx/this.points.length, ty/this.points.length);
-}
+};
 
 Geometry.prototype.translate = function (DDVector, options){
 	if(DDVector == null) throw 'Geometry.translate > No 2Dvector specified';
@@ -65,7 +65,7 @@ Geometry.prototype.translate = function (DDVector, options){
 	}
 
 	return this;
-}
+};
 
 Geometry.prototype.clear = function (ctx, options){
 	if(!ctx.canvas || !ctx) throw 'Geometry.clear > No context specified';
@@ -84,12 +84,12 @@ Geometry.prototype.clear = function (ctx, options){
 		ctx.lineTo(p.x, p.y);
 
 		if(i === a.length-1) ctx.lineTo(self.points[0].x, self.points[0].y);
-	})
+	});
 
 	ctx.closePath();
 	ctx.fill();
 	ctx.restore();
-}
+};
 
 Geometry.prototype.moveTo = function (point){
 	var offset = point.get2DVector(this.getCenter());
@@ -97,5 +97,5 @@ Geometry.prototype.moveTo = function (point){
 	this.points.map(function (p){
 		p.x += offset.x;
 		p.y += offset.y;
-	})
-}
+	});
+};

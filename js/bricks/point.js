@@ -20,7 +20,7 @@ Point.prototype.draw = function (ctx, options){
 	ctx.fill();
 
 	return this;
-}
+};
 
 Point.prototype.lineTo = function (ctx, Point, options){
 	if(!ctx.canvas || !ctx) throw 'Point.lineTo > No context specified';
@@ -36,11 +36,11 @@ Point.prototype.lineTo = function (ctx, Point, options){
 	ctx.stroke();
 
 	return this;
-}
+};
 
 Point.prototype.copy = function (){
 	return new Point(this.x, this.y);
-}
+};
 
 Point.prototype.get2DVector = function (Point, options){
 	if(options == null) options = {};
@@ -58,7 +58,7 @@ Point.prototype.get2DVector = function (Point, options){
 	}
 
 	return new DDVector(x, y);
-}
+};
 
 Point.prototype.translate = function (DDVector, options) {
 	if(DDVector == null) throw 'Point.translate > No 2DVector specified';
@@ -76,7 +76,7 @@ Point.prototype.translate = function (DDVector, options) {
 	} else {
 		return new Point(x, y);
 	}
-}
+};
 
 Point.prototype.offset = function (x, y, options){
 	if(options == null) options = {};
@@ -89,4 +89,4 @@ Point.prototype.offset = function (x, y, options){
 	} else {
 		return new Point(this.x+x, this.y+y);
 	}
-}
+};
